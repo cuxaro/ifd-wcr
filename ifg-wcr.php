@@ -235,9 +235,11 @@ add_action('ifd_wcr_applied_coupon_order_completed', function (\WC_Coupon $cupon
 
 
     $amount = $cupon->get_amount();
-    if ($amount > 0) :
 
-        $amount = $amount - 10;
+    $valor_restar = 10;
+    if ($amount > $valor_restar) :
+
+        $amount = $amount - $valor_restar;
         $cupon->set_amount($amount);
         $cupon->save();
 
@@ -283,3 +285,16 @@ add_action('ifd_wcr_added_score', function($puntuacion_nueva, $user_id ){
     wp_mail($user_email, __('Alguien ha usado tu cupón', 'ifd-wcr'), $message);
 
 }, 10, 2);
+
+
+//Tareas:
+
+//TODO: Hook cuando se eliminar un cupon eliminar de los usuarios
+
+//TODO: Mostrar el cupon en el panel de usuario
+
+//TODO: Mostrar el cupon en un shortcode
+
+//TODO: Enviar un email cuando un nuevo cupon se ha creado
+
+//TODO: Que el valor de la recompensa se multiplique por las veces que se ha utilizado el cupón
